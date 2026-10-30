@@ -22,7 +22,7 @@ for line in export.stdout.splitlines():
         env[key] = value.replace('$PATH', env.get('PATH', ''))
 env['IDF_PATH'] = str(args.idf)
 if args.cache:
-    env['PRISM_COMPONENT_CACHE'] = str(args.cache.resolve())
+    env['DEMO_COMPONENT_CACHE'] = str(args.cache.resolve())
     # Ninja's bootloader subprocess also needs this setting, outside CMake's scope.
     env['IDF_COMPONENT_MANAGER'] = '0'
 result = subprocess.run(

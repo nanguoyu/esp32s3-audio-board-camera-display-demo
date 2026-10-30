@@ -3,7 +3,7 @@
 #include <string.h>
 #include "board.h"
 #include "audio.h"
-#include "prism_ui.h"
+#include "effects_ui.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_heap_caps.h"
@@ -19,9 +19,9 @@ static int64_t flash_until;
 
 static void change_effect(int step)
 {
-    effect=(effect+step+PRISM_EFFECTS)%PRISM_EFFECTS;
+    effect=(effect+step+EFFECT_COUNT)%EFFECT_COUNT;
     app_audio_sound(1,effect);
-    printf("ACTION effect=%d name=%s\n",effect,prism_names[effect]);
+    printf("ACTION effect=%d name=%s\n",effect,effect_names[effect]);
 }
 static void toggle_freeze(void)
 {
@@ -55,7 +55,7 @@ void app_main(void)
     usb_serial_jtag_vfs_use_driver();
     usb_serial_jtag_vfs_set_tx_line_endings(ESP_LINE_ENDINGS_LF);
     setvbuf(stdout,NULL,_IOLBF,0);
-    puts("POCKET_PRISM v1");
+    puts("ESP32-S3 AUDIO BOARD CAMERA DISPLAY DEMO");
     ESP_ERROR_CHECK(board_init());
     esp_err_t touch_error=board_touch_init();
     printf("TOUCH_INIT %s\n",esp_err_to_name(touch_error));
@@ -65,7 +65,7 @@ void app_main(void)
     // This 115,200-byte buffer leaves over 160 KB free with camera/audio active.
     uint16_t *camera=heap_caps_calloc(CAMERA_W*CAMERA_H,2,MALLOC_CAP_INTERNAL|MALLOC_CAP_8BIT);
     if(!screen||!camera) {puts("ERROR framebuffer allocation");return;}
-    prism_render(screen,camera,0,false,false,false,0,0,false);
+    effects_render(screen,camera,0,false,false,false,0,0,false);
     ESP_ERROR_CHECK(board_lcd_draw(screen));
     esp_err_t camera_error=board_camera_init();
     printf("CAMERA_INIT %s\n",esp_err_to_name(camera_error));
@@ -137,7 +137,7 @@ void app_main(void)
         int level=app_audio_level();
         bool flash=esp_timer_get_time()<flash_until;
         int64_t render_start=esp_timer_get_time();
-        prism_render(screen,camera,effect,camera_ok,frozen,muted,level,frozen?0:fps,flash);
+        effects_render(screen,camera,effect,camera_ok,frozen,muted,level,frozen?0:fps,flash);
         render_us+=esp_timer_get_time()-render_start;
         int64_t draw_start=esp_timer_get_time();
         ESP_ERROR_CHECK(board_lcd_draw(screen));++shown;
@@ -146,9 +146,9 @@ void app_main(void)
         if(flash)board_ring(45,45,45);
         else {
             int brightness=12+level/3;
-            board_ring(prism_colors[effect][0]*brightness/255,
-                       prism_colors[effect][1]*brightness/255,
-                       prism_colors[effect][2]*brightness/255);
+            board_ring(effect_colors[effect][0]*brightness/255,
+                       effect_colors[effect][1]*brightness/255,
+                       effect_colors[effect][2]*brightness/255);
         }
         int64_t now=esp_timer_get_time(),elapsed=now-last_status;
         if(elapsed>=5000000) {

@@ -1,8 +1,8 @@
-# Pocket Prism
+# ESP32-S3 Audio Board Camera and Display Demo
 
-[中文说明](README.zh-CN.md)
+[Chinese version](README.zh-CN.md)
 
-A camera and touchscreen demo for the **Waveshare ESP32-S3-AUDIO-Board**. Pocket Prism shows an OV2640 camera feed with four effects: mirror, pop art, kaleidoscope and a four-color pixel view. Tap the screen to freeze a frame, swipe to change the effect, or hold to mute the sound cues. The LED ring changes color with the selected effect and brightness with sound from the microphones.
+A camera and touchscreen demo for the **Waveshare ESP32-S3-AUDIO-Board**. The firmware displays an OV2640 camera feed with four effects: mirror, pop art, kaleidoscope and a four-color pixel view. Tap the screen to freeze a frame, swipe to change the effect, or hold to mute the sound cues. The LED ring changes color with the selected effect and brightness with sound from the microphones.
 
 The application runs on the board. It needs neither Wi-Fi nor an SD card. A frozen frame stays in RAM until live view resumes or the board restarts.
 
@@ -15,7 +15,7 @@ The application runs on the board. It needs neither Wi-Fi nor an SD card. A froz
 | Display | Waveshare 1.69inch Touch LCD Module, 240 × 280, ST7789V2 and CST816T |
 | Audio and LEDs | Onboard ES8311, ES7210, microphones and seven LEDs; a connected speaker |
 
-**Connect the display through its original adapter PCB and 12-wire cable.** The bare panel ribbon and the Audio Board's display socket have different pin assignments. They must not be plugged directly into one another. Follow the [wiring guide](docs/wiring.md) before powering the board.
+**Connect the display through its original adapter PCB and 12-wire cable.** The bare panel ribbon and the Audio Board's display socket have different pin assignments. They must not be plugged directly into one another. Follow the [wiring guide](docs/en/wiring.md) before powering the board.
 
 ## Build and flash
 
@@ -41,7 +41,7 @@ PORT=/dev/cu.usbmodemXXXX
 idf.py -p "$PORT" flash monitor
 ```
 
-Exit the monitor with **Ctrl+]**. To preserve an existing firmware installation, see [backup and restore](docs/development.md#backup-and-restore) before flashing.
+Exit the monitor with **Ctrl+]**. To preserve an existing firmware installation, see [backup and restore](docs/en/development.md#backup-and-restore) before flashing.
 
 ## Controls
 
@@ -58,7 +58,7 @@ Effects can also be changed while a frame is frozen. The meter on the right show
 
 ## Performance
 
-The 240 × 240 camera view ran at about **7.7–7.8 fps** in MIRROR mode on the hardware above. The full 240 × 280 display includes the controls. JPEG decoding and the LCD transfer account for most of each frame's time. See [implementation and timing](docs/development.md#frame-pipeline) for the buffer sizes and measurements.
+The 240 × 240 camera view ran at about **7.7–7.8 fps** in MIRROR mode on the hardware above. The full 240 × 280 display includes the controls. JPEG decoding and the LCD transfer account for most of each frame's time. See [implementation and timing](docs/en/development.md#frame-pipeline) for the buffer sizes and measurements.
 
 ## Serial tools
 
@@ -69,12 +69,12 @@ python -m pip install -r requirements-tools.txt
 python tools/device_check.py --port "$PORT" --snapshot --seconds 45
 ```
 
-Output goes to `captures/`, which is ignored by Git. Close other serial monitors before running the tool. More commands and an offline build option are described in [development notes](docs/development.md).
+Output goes to `captures/`, which is ignored by Git. Close other serial monitors before running the tool. More commands and an offline build option are described in [development notes](docs/en/development.md).
 
-For a blank screen, an undetected camera or an unresponsive control, start with [troubleshooting](docs/troubleshooting.md).
+For a blank screen, an undetected camera or an unresponsive control, start with [troubleshooting](docs/en/troubleshooting.md).
 
 ## References
 
 - [Waveshare Audio Board documentation](https://docs.waveshare.com/ESP32-S3-AUDIO-Board)
 - [Waveshare 1.69-inch touch LCD documentation](https://www.waveshare.com/wiki/1.69inch_Touch_LCD_Module)
-- [Dependencies and credits](THIRD_PARTY.md)
+- [Dependencies and credits](docs/en/dependencies.md)

@@ -1,5 +1,7 @@
 # Troubleshooting
 
+[Chinese version](../zh-CN/troubleshooting.md)
+
 ## Backlight is on, but the screen is blank
 
 The backlight has a separate control pin, so light from the panel does not establish that SPI data is reaching it. Check LCD_DIN → IO9, LCD_CLK → IO4, LCD_CS → IO3, LCD_DC → IO7 and LCD_RST → EX1 against the [wiring table](wiring.md).

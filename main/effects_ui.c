@@ -1,11 +1,11 @@
-#include "prism_ui.h"
+#include "effects_ui.h"
 #include "board.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-const char *const prism_names[PRISM_EFFECTS]={"MIRROR","POP ART","KALEIDO","PIXEL"};
-const uint8_t prism_colors[PRISM_EFFECTS][3]={{48,190,255},{255,83,176},{255,190,65},{112,239,173}};
+const char *const effect_names[EFFECT_COUNT]={"MIRROR","POP ART","KALEIDO","PIXEL"};
+const uint8_t effect_colors[EFFECT_COUNT][3]={{48,190,255},{255,83,176},{255,190,65},{112,239,173}};
 static const uint8_t glyphs[36][7]={
     {14,17,17,31,17,17,17},{30,17,17,30,17,17,30},{14,17,16,16,16,17,14},
     {30,17,17,17,17,17,30},{31,16,16,30,16,16,31},{31,16,16,30,16,16,16},
@@ -47,7 +47,7 @@ static void text(uint16_t *s,int x,int y,const char *str,int scale,uint16_t colo
 }
 static int luma(uint16_t p) {return (((p>>11)&31)*77+((p>>5)&63)*75+(p&31)*29)>>5;}
 
-void prism_render(uint16_t *s,const uint16_t *camera,int effect,bool camera_ok,
+void effects_render(uint16_t *s,const uint16_t *camera,int effect,bool camera_ok,
                   bool frozen,bool muted,int level,int fps,bool flash)
 {
     static const uint16_t retro[]={0x0864,0x2290,0x5db8,0xdff5};
@@ -65,9 +65,9 @@ void prism_render(uint16_t *s,const uint16_t *camera,int effect,bool camera_ok,
         if(effect==3&&camera_ok) {int value=luma(pixel);int index=value/64;if(index>3)index=3;pixel=retro[index];}
         s[y*240+x]=pixel;
     }
-    uint16_t accent=rgb(prism_colors[effect][0],prism_colors[effect][1],prism_colors[effect][2]);
+    uint16_t accent=rgb(effect_colors[effect][0],effect_colors[effect][1],effect_colors[effect][2]);
     round_rect(s,8,8,224,25,0x0842);
-    text(s,16,14,prism_names[effect],2,accent);
+    text(s,16,14,effect_names[effect],2,accent);
     unsigned display_fps=(unsigned)(fps<0?0:fps>99?99:fps);
     char status[12];snprintf(status,sizeof(status),"%u FPS",display_fps);
     text(s,188,14,status,1,0xffff);

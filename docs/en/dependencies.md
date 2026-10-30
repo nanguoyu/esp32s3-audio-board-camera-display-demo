@@ -1,5 +1,7 @@
 # Dependencies and credits
 
+[Chinese version](../zh-CN/dependencies.md)
+
 The firmware uses ESP-IDF and the following Espressif components. Versions are fixed in `main/idf_component.yml`; the component manager downloads their source during a normal build.
 
 | Component | Version | Upstream |

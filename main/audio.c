@@ -13,7 +13,7 @@
 
 #define RATE 16000
 #define BLOCK 256
-static const char *TAG="prism_audio";
+static const char *TAG="audio";
 static esp_codec_dev_handle_t output, input;
 static bool input_ready;
 static QueueHandle_t sounds;
@@ -129,7 +129,7 @@ esp_err_t app_audio_init(void)
     sounds=xQueueCreate(8,sizeof(sound_t));
     if(!sounds)return ESP_ERR_NO_MEM;
     ESP_RETURN_ON_ERROR(board_expander_update(1u<<8,1u<<8),TAG,"speaker amplifier");
-    if(xTaskCreatePinnedToCore(audio_task,"prism_sound",6144,NULL,4,NULL,1)!=pdPASS) {
+    if(xTaskCreatePinnedToCore(audio_task,"audio_task",6144,NULL,4,NULL,1)!=pdPASS) {
         board_expander_update(1u<<8,0);return ESP_ERR_NO_MEM;
     }
     printf("AUDIO_READY speaker=1 microphones=%d rate=%d\n",input_ready,RATE);

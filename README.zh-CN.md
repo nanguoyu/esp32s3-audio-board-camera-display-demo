@@ -1,6 +1,6 @@
-# Pocket Prism / 口袋万花筒
+# ESP32-S3 Audio Board 摄像头与触摸屏示例
 
-[English](README.md)
+[英文版](README.md)
 
 这是一个运行在 **Waveshare ESP32-S3-AUDIO-Board** 上的触摸相机示例。OV2640 的画面可以切换为镜像、波普色彩、万花筒和四色像素风。点击屏幕可以定格，左右滑动可以切换效果，长按可以关闭或恢复音效。灯环颜色跟随当前效果，亮度跟随麦克风采集到的声音。
 
@@ -15,7 +15,7 @@
 | 屏幕 | Waveshare 1.69inch Touch LCD Module，240 × 280，ST7789V2、CST816T |
 | 音频和灯环 | 板载 ES8311、ES7210、麦克风和七颗 LED，以及接好的扬声器 |
 
-**屏幕必须通过原配转接板和 12 芯线连接。** 裸屏排线与 Audio Board 显示插座的引脚定义不同，不能直接互插。上电前请按[接线说明](docs/wiring.md)连接。
+**屏幕必须通过原配转接板和 12 芯线连接。** 裸屏排线与 Audio Board 显示插座的引脚定义不同，不能直接互插。上电前请按[接线说明](docs/zh-CN/wiring.md)连接。
 
 ## 编译与烧录
 
@@ -36,7 +36,7 @@ PORT=/dev/cu.usbmodemXXXX
 idf.py -p "$PORT" flash monitor
 ```
 
-按 **Ctrl+]** 退出串口监视器。如果要保留板上原有固件，烧录前先按[备份与恢复说明](docs/development.md#backup-and-restore)备份。
+按 **Ctrl+]** 退出串口监视器。如果要保留板上原有固件，烧录前先按[备份与恢复说明](docs/zh-CN/development.md#备份与恢复)备份。
 
 ## 操作
 
@@ -53,7 +53,7 @@ idf.py -p "$PORT" flash monitor
 
 ## 刷新率
 
-上述硬件在 MIRROR 模式下，240 × 240 实时画面的刷新率约为 **7.7–7.8 帧/秒**。完整屏幕是 240 × 280，下方留给操作按钮。每帧主要耗时在 JPEG 解码和 LCD 传输，具体内存布局和耗时见[实现说明](docs/development.md#frame-pipeline)。
+上述硬件在 MIRROR 模式下，240 × 240 实时画面的刷新率约为 **7.7–7.8 帧/秒**。完整屏幕是 240 × 280，下方留给操作按钮。每帧主要耗时在 JPEG 解码和 LCD 传输，具体内存布局和耗时见[实现说明](docs/zh-CN/development.md#图像处理流程)。
 
 ## 抓图与排错
 
@@ -64,4 +64,10 @@ python -m pip install -r requirements-tools.txt
 python tools/device_check.py --port "$PORT" --snapshot --seconds 45
 ```
 
-文件保存在 Git 忽略的 `captures/` 目录。运行工具前，请关闭占用同一端口的串口监视器。更多控制命令见[开发说明](docs/development.md)；黑屏、摄像头未识别或触摸异常的处理方法见[排错说明](docs/troubleshooting.md)。
+文件保存在 Git 忽略的 `captures/` 目录。运行工具前，请关闭占用同一端口的串口监视器。更多控制命令见[开发说明](docs/zh-CN/development.md)；黑屏、摄像头未识别或触摸异常的处理方法见[排错说明](docs/zh-CN/troubleshooting.md)。
+
+## 参考资料
+
+- [Audio Board 官方文档](https://docs.waveshare.com/ESP32-S3-AUDIO-Board)
+- [1.69 英寸触摸屏官方文档](https://www.waveshare.com/wiki/1.69inch_Touch_LCD_Module)
+- [依赖与来源](docs/zh-CN/dependencies.md)

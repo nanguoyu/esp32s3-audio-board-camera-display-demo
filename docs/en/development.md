@@ -1,12 +1,14 @@
 # Development notes
 
+[Chinese version](../zh-CN/development.md)
+
 ## Source layout
 
 | File | Responsibility |
 | --- | --- |
 | main/main.c | Frame loop, touch gestures, buttons and serial commands |
 | main/board.c | I2C, expander, camera, LCD and LED ring |
-| main/prism_ui.c | Effects, text, buttons and sound-level meter |
+| main/effects_ui.c | Effects, text, buttons and sound-level meter |
 | main/audio.c | ES8311 output, ES7210 input and sound cues |
 | tools/build.py | ESP-IDF environment setup and optional component-cache reuse |
 | tools/device_check.py | Serial capture and frame export |
