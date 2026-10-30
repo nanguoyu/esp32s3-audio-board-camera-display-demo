@@ -1,0 +1,15 @@
+/build/
+/managed_components/
+/sdkconfig
+/sdkconfig.old
+/captures/
+/backups/
+__pycache__/
+*.py[cod]
+*.log
+*.bin
+*.elf
+*.map
+.env
+.env.*
+.DS_Store
