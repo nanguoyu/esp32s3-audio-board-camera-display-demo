@@ -1,6 +1,6 @@
 # 接线
 
-[英文版](../en/wiring.md)
+[English](../en/wiring.md)
 
 更换排线或接线前，先断开 USB 和电池供电。
 

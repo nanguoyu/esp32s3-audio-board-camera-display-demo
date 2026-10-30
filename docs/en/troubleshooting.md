@@ -1,6 +1,6 @@
 # Troubleshooting
 
-[Chinese version](../zh-CN/troubleshooting.md)
+[中文](../zh-CN/troubleshooting.md)
 
 ## Backlight is on, but the screen is blank
 

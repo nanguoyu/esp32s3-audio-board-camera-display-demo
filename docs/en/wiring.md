@@ -1,6 +1,6 @@
 # Wiring
 
-[Chinese version](../zh-CN/wiring.md)
+[中文](../zh-CN/wiring.md)
 
 Disconnect USB and battery power before changing a ribbon or jumper wire.
 

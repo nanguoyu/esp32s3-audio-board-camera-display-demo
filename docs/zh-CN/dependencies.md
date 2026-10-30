@@ -1,6 +1,6 @@
 # 依赖与来源
 
-[英文版](../en/dependencies.md)
+[English](../en/dependencies.md)
 
 固件使用 ESP-IDF 及以下 Espressif 组件。版本固定在 `main/idf_component.yml` 中，常规构建时由组件管理器下载。
 

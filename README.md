@@ -1,6 +1,6 @@
 # ESP32-S3 Audio Board Camera and Display Demo
 
-[Chinese version](README.zh-CN.md)
+[中文](README.zh-CN.md)
 
 A camera and touchscreen demo for the **Waveshare ESP32-S3-AUDIO-Board**. The firmware displays an OV2640 camera feed with four effects: mirror, pop art, kaleidoscope and a four-color pixel view. Tap the screen to freeze a frame, swipe to change the effect, or hold to mute the sound cues. The LED ring changes color with the selected effect and brightness with sound from the microphones.
 

@@ -1,6 +1,6 @@
 # 开发说明
 
-[英文版](../en/development.md)
+[English](../en/development.md)
 
 ## 源码结构
 

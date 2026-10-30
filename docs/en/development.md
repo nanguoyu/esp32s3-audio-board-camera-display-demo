@@ -1,6 +1,6 @@
 # Development notes
 
-[Chinese version](../zh-CN/development.md)
+[中文](../zh-CN/development.md)
 
 ## Source layout
 

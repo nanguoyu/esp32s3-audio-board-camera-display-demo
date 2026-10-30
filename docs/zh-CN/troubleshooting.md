@@ -1,6 +1,6 @@
 # 排错说明
 
-[英文版](../en/troubleshooting.md)
+[English](../en/troubleshooting.md)
 
 ## 背光亮，但没有图像
 
